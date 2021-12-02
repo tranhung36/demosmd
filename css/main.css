@@ -1,49 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.main {
-    height: 100%;
+body,
+input {
+    font-family: 'Outfit',
+        sans-serif;
+}
+
+.container {
+    background-color: white;
+    position: relative;
     width: 100%;
-    background-color: tan;
-    background-position: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
     position: absolute;
+    width: 2000px;
+    height: 2000px;
+    top: -10%;
+    right: 48%;
+    background-image: linear-gradient(-45deg, #404038 0%, #505048 100%);
+    transform: translateY(-50%);
+    border-radius: 50%;
 }
 
-.form-box {
-    width: 380px;
-    height: 480px;
-    position: relative;
-    margin: 6% auto;
-    background-color: antiquewhite;
-    padding: 5px;
-    border-radius: 15px;
-}
-
-.button-box {
-    width: 230px;
-    margin: 35px auto;
-    position: relative;
-    box-shadow: 0 0 20px 9px cornsilk;
-    border-radius: 30px;
-}
-
-.toggle-btn {
-    padding: 10px 32px;
-    background: transparent;
-    border: 0;
-    outline: none;
-    position: relative;
-}
-
-#btn {
+.form-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5rem;
+}
+
+.title {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 3rem;
+    color: #303028;
+}
+
+.input-field {
+    max-width: 380px;
+    width: 100%;
+    height: 55px;
+    background-color: #e8e0e0;
+    margin: 10px 0;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0 0.4rem;
+    position: relative;
+}
+
+.input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: #adada0;
+    font-size: 1.3rem;
+}
+
+.input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: lighter;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #303028;
+}
+
+.btn {
+    width: 150px;
+    height: 49px;
+    outline: none;
+    border: none;
+    border-radius: 45px;
+    background-color: #404038;
+    color: #e8e0e0;
+    text-transform: uppercase;
+    margin: 15px 0;
+    font-weight: bold;
+    transition: all 0.5s;
+}
+
+.btn:hover {
+    background-color: #505048;
+}
+
+.social-text {
+    padding: 0.7rem 0;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    margin: 0 0.45rem;
+    border: 1px solid #404038;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #404038;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+
+.social-icon:hover {
+    color: #808078;
+    border-color: #808080;
+}
+
+.signin-signup {
     position: absolute;
-    width: 115px;
-    height: 100%;
-    background-color: tan;
-    border-radius: 30px;
-    transition: .5s;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.signup-signup {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 1fr;
 }
