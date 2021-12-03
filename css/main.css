@@ -135,7 +135,7 @@ form {
     border-color: #808080;
 }
 
-.signin-signup {
+.signin {
     position: absolute;
     top: 50%;
     left: 75%;
@@ -144,12 +144,32 @@ form {
     grid-template-columns: 1fr;
 }
 
-.signup-signup {
+.signup {
     position: absolute;
     top: 50%;
     left: 75%;
     transform: translate(-50%, -50%);
     display: grid;
     grid-template-columns: 1fr;
-    visibility: hidden;
+}
+
+.signup-link {
+    color: #404038;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    color: #303028;
+}
+
+@media (max-width: 498px) {
+    .signin {
+        left: 50%;
+        transition: all 1s;
+    }
+    .signup {
+        left: 50%;
+        transition: all 1s;
+    }
 }
