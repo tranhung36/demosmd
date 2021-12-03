@@ -9,14 +9,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="form-container" id="formContainer">
-            <div id="signup" class="signup">
-                <form action="#" class="signup-form">
+        <div class="form-container">
+            <div class="signin-signup">
+                <form id="signin" action="#" class="signin-form">
+                    <h2 class="title">
+                        Sign In
+                    </h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <input type="submit" class="btn solid" value="Login">
+                    <p>New Here? <span onclick="signUp()">Sign Up</span></p>
+                    <p class="social-text">Or Sign in with social platforms</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </form>
+                <form id="signup" action="#" class="signup-form">
                     <h2 class="title">
                         Sign Up
                     </h2>
@@ -37,7 +66,7 @@
                         <input type="password" placeholder="Password Confirm" required>
                     </div>
                     <input type="submit" class="btn solid" value="Register">
-                    <p>Have Account? <a class="signup-link" href="signin.html">Sign In</a></p>
+                    <p>Have Account? <span onclick="signIn()">Sign In</span></p>
                     <p class="social-text">Or Sign Up with social platforms</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
@@ -53,6 +82,7 @@
                 </form>
             </div>
         </div>
+
     </div>
     <script src="main.js" type="text/javascript"></script>
 </body>

@@ -21,15 +21,14 @@ input {
 }
 
 .container::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 2000px;
     height: 2000px;
     top: -10%;
     right: 48%;
     background-image: linear-gradient(-45deg, #404038 0%, #505048 100%);
-    transform: translateY(-50%);
-    border-radius: 50%;
+    transition: 1s;
 }
 
 .form-container {
@@ -135,22 +134,43 @@ form {
     border-color: #808080;
 }
 
-.signin {
+.signin-form {
     position: absolute;
     top: 50%;
     left: 75%;
     transform: translate(-50%, -50%);
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    transition: 1s;
 }
 
-.signup {
+.signup-form {
     position: absolute;
     top: 50%;
-    left: 75%;
+    left: -60%;
     transform: translate(-50%, -50%);
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    transition: 1s;
+}
+
+.signin-signup {
+    background-color: cover;
+    height: 100%;
+    max-width: 100%;
+    position: relative;
+    transition: 1s;
+}
+
+@media only screen and (max-width: 998px) {
+    .signin-signup {
+        max-width: 70%;
+    }
+    .container::before {
+        right: 90%;
+    }
+}
+
+span {
+    cursor: pointer;
 }
 
 .signup-link {
@@ -161,15 +181,4 @@ form {
 
 .signup-link:hover {
     color: #303028;
-}
-
-@media (max-width: 498px) {
-    .signin {
-        left: 50%;
-        transition: all 1s;
-    }
-    .signup {
-        left: 50%;
-        transition: all 1s;
-    }
 }
