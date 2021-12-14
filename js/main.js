@@ -1,3 +1,15 @@
+const username = localStorage.getItem("username");
+const logoutEle = document.getElementById("logout");
+const nameElement = document.getElementById("username");
+
+if (username) {
+  nameElement.innerText = username;
+  logoutEle.innerText = "Logout";
+}
+logoutEle.onclick = (e) => {
+  localStorage.removeItem("username");
+};
+
 var productsApi = `https://fakestoreapi.com/products`;
 
 fetch(productsApi)
@@ -6,7 +18,7 @@ fetch(productsApi)
     $("#list").pagination({
       dataSource: data,
       pageSize: 8,
-      callback: (data, pagination) => {
+      callback: (data) => {
         var newProducts = data.map((product) => {
           return `<div class="product text-center col-lg-3 col-md-4 col-12">
                     <img src="${product.image}" alt="" class="img-fluid mb-3">
