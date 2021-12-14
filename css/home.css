@@ -207,10 +207,14 @@ button:hover {
 .product {
     margin-bottom: 2rem;
     cursor: pointer;
+    display: inline-block;
+    max-height: 300px;
+    margin-top: 15px;
 }
 
 .product img {
     transition: all 0.3s;
+    max-height: 150px;
 }
 
 .product img:hover {
