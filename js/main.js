@@ -2,6 +2,8 @@ const username = localStorage.getItem("username");
 const logoutEle = document.getElementById("logout");
 const nameElement = document.getElementById("username");
 
+const productsApi = `https://fakestoreapi.com/products`;
+
 if (username) {
     nameElement.innerText = username;
     logoutEle.innerText = "Logout";
@@ -10,7 +12,6 @@ logoutEle.onclick = (e) => {
     localStorage.removeItem("username");
 };
 
-var productsApi = `https://fakestoreapi.com/products`;
 
 fetch(productsApi)
     .then((response) => response.json())
@@ -19,7 +20,7 @@ fetch(productsApi)
             dataSource: data,
             pageSize: 8,
             callback: (data) => {
-                var newProducts = data.map((product) => {
+                const newProducts = data.map((product) => {
                     return `<div class="product text-center col-lg-3 col-md-4 col-12">
                     <img src="${product.image}" alt="" class="img-fluid mb-3">
                     <div class="star">
