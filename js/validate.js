@@ -42,11 +42,9 @@ form.addEventListener("submit", (e) => {
         alert("login successfully");
         localStorage.setItem("username", "Hung Tran");
         window.location.href = "http://127.0.0.1:5500/home.html";
-        return false;
     } else {
         window.location = "http://127.0.0.1:5500/login.html";
         alert("wrong email or password");
-        return false;
     }
 
 })
