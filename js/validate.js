@@ -4,6 +4,7 @@ localStorage.setItem("password", "test1234");
 function Validation(element) {
     element.input.forEach((e) => {
         const ele = document.getElementById(e);
+        // add event when user blur input field
         ele.onblur = (e) => {
             if (!ele.value) {
                 const mess = ele.parentElement.querySelector(".form-message");
@@ -15,6 +16,7 @@ function Validation(element) {
                 ele.parentElement.classList.remove("invalid");
             }
         };
+        // add event when user input value
         ele.oninput = (e) => {
             if (!ele.value) {
                 const mess = ele.parentElement.querySelector(".form-message");
