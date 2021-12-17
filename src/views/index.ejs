@@ -51,8 +51,26 @@
         <hr class="mx-auto">
         <p>Voluptatibus doloremque fuga odit at nisi incidunt molestiae fugiat dignissimos</p>
     </div>
-    <div id="products" class="row mx-auto container-fluid">
-
+    <div class="row mx-auto container-fluid">
+        <% data.forEach(product => { %>
+        <div class="product text-center col-lg-3 col-md-4 col-12">
+            <img src="<%= product.image %>" alt="" class="img-fluid mb-3">
+            <div class="star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <h5 class="product-name">
+                <%= product.title %>
+            </h5>
+            <h4 class="product-price">
+                $<%= product.price %>
+            </h4>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <% }) %>
     </div>
     <div id="list" class="container mt-5">
         <div class="wrapper"></div>

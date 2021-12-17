@@ -1,8 +1,16 @@
+const fetch = require('node-fetch')
+
 class SiteController {
 
     // [GET] /
-    index(req, res) {
-        res.render('index')
+    async index(req, res) {
+        const products = await fetch(`https://fakestoreapi.com/products`);
+
+        const data = await products.json()
+
+        res.render('index', {
+            data: data,
+        })
     }
 
     // [POST] /login
