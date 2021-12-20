@@ -1,6 +1,3 @@
-// localStorage.setItem("email", "testuser@example.com");
-// localStorage.setItem("password", "test1234");
-
 function Validation(element) {
     element.input.forEach((e) => {
         const ele = document.getElementById(e);
@@ -30,22 +27,3 @@ function Validation(element) {
         };
     });
 }
-
-// const email = document.getElementById("email");
-// const password = document.getElementById("password");
-// const emailLocal = localStorage.getItem("email");
-// const passLocal = localStorage.getItem("password");
-// const form = document.querySelector(".form");
-
-// form.addEventListener("submit", (e) => {
-//     e.preventDefault();
-
-//     if (email.value == emailLocal && password.value == passLocal) {
-//         alert("login successfully");
-//         localStorage.setItem("username", "Hung Tran");
-//         window.location.href = "http://localhost:3000/";
-//     } else {
-//         window.location = "http://localhost:3000/login";
-//         alert("wrong email or password");
-//     }
-// });

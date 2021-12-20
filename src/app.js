@@ -2,21 +2,15 @@ const express = require('express')
 const morgan = require('morgan')
 const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
-const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 const routes = require('./routes')
 const db = require('./config/db/database')
 
 const app = express()
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        secure: true
-    }
-}))
+require('dotenv').config()
+app.use(cookieParser('my secret'))
 
 // connect db
 db.connect()

@@ -1,5 +1,7 @@
 const fetch = require('node-fetch')
-const session = require('express-session')
+const {
+    validationResult
+} = require('express-validator')
 class SiteController {
 
     // [POST] /login
@@ -8,27 +10,56 @@ class SiteController {
             email: "testuser@example.com",
             password: "test1234",
         }
+        const errors = validationResult(req);
 
-        if (req.body.email === user.email && req.body.password === user.password) {
-            const username = "Hung Tran"
-            session.username = username
+        if (!errors.isEmpty()) {
+            const errMsgs = errors.array()
+
+            res.render('login', {
+                layout: 'layouts/layout_login',
+                errMsgs
+            })
+        }
+
+        const email = req.body.email
+        const password = req.body.password
+        const alerts = []
+
+        if (email == user.email && password == user.password) {
+            res.cookie("username", "Hung Tran", {
+                signed: true
+            })
             console.log("You are now logged in")
             res.redirect('/')
+        } else if (email != user.email || password != user.password) {
+            alerts.push('wrong email or password')
         }
 
         res.render('login', {
-            layout: 'layouts/layout_login'
+            layout: 'layouts/layout_login',
+            alerts
         })
+
     }
 
     // [GET] /
     async index(req, res) {
-        const products = await fetch(`https://fakestoreapi.com/products`);
-        const data = await products.json()
+        try {
+            const products = await fetch(process.env.API);
+            const data = await products.json()
 
-        res.render('index', {
-            data: data,
-        })
+            res.render('index', {
+                data: data,
+            })
+        } catch (error) {
+            res.sendStatus(403)
+        }
+    }
+
+    // [GET] /logout
+    logout(req, res) {
+        res.clearCookie("username")
+        res.redirect("/login")
     }
 
 }

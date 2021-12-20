@@ -54,6 +54,10 @@ html {
     text-align: left;
 }
 
+.form-message {
+    color: red;
+}
+
 .form-label {
     font-weight: 700;
     padding-bottom: 6px;
