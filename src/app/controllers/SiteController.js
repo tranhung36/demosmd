@@ -2,43 +2,51 @@ const fetch = require('node-fetch')
 const {
     validationResult
 } = require('express-validator')
+const User = require('../models/User')
+
 class SiteController {
 
     // [POST] /login
-    login(req, res) {
-        const user = {
-            email: "testuser@example.com",
-            password: "test1234",
-        }
-        const errors = validationResult(req);
+    async login(req, res, next) {
+        try {
+            const {
+                email,
+                password
+            } = req.body
 
-        if (!errors.isEmpty()) {
-            const errMsgs = errors.array()
+            const alerts = []
 
+            const user = await User.findOne({
+                email,
+                password
+            })
+
+            const errors = validationResult(req);
+
+            if (!errors.isEmpty()) {
+                const errMsgs = errors.array()
+
+                res.render('login', {
+                    layout: 'layouts/layout_login',
+                    errMsgs
+                })
+            }
+
+            if (user) {
+                res.cookie("username", user.username, {
+                    signed: true
+                })
+                res.redirect('/')
+            }
+            alerts.push('wrong email or password')
             res.render('login', {
                 layout: 'layouts/layout_login',
-                errMsgs
+                alerts
             })
+
+        } catch (error) {
+            console.log(error)
         }
-
-        const email = req.body.email
-        const password = req.body.password
-        const alerts = []
-
-        if (email == user.email && password == user.password) {
-            res.cookie("username", "Hung Tran", {
-                signed: true
-            })
-            console.log("You are now logged in")
-            res.redirect('/')
-        } else if (email != user.email || password != user.password) {
-            alerts.push('wrong email or password')
-        }
-
-        res.render('login', {
-            layout: 'layouts/layout_login',
-            alerts
-        })
 
     }
 

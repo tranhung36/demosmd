@@ -11,6 +11,7 @@ const app = express()
 
 require('dotenv').config()
 app.use(cookieParser('my secret'))
+app.use(express.json())
 
 // connect db
 db.connect()
@@ -28,8 +29,7 @@ app.use(express.urlencoded({
 app.use(expressLayouts)
 // static files
 app.use(express.static(path.join(__dirname, 'public')))
-app.use('/css', express.static(path.join(__dirname, 'public')))
-app.use('/js', express.static(path.join(__dirname, 'public')))
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 // engine template
 app.set('view engine', 'ejs')
@@ -43,5 +43,5 @@ routes(app)
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`App listening at http://localhost:${port}`)
 })
