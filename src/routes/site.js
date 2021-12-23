@@ -4,6 +4,7 @@ const {
     body
 } = require('express-validator')
 
+//TODO: research event emitter
 
 const siteController = require('../app/controllers/SiteController')
 const authenticated = require('../app/middleware/Authentication')

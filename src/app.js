@@ -16,7 +16,7 @@ app.use(cookieParser('my secret'))
 db.connect()
 
 // config port
-const port = 3000
+const port = 8080
 
 // middleware
 app.use(express.urlencoded({
