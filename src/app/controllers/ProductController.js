@@ -1,12 +1,19 @@
+const Product = require('../models/Product')
+
 class ProductController {
 
     // [GET] /products
-    products(req, res) {
-        res.send('Products')
+    index(req, res) {
+        Product.find({})
+            .sort('-price')
+            .then(data => res.render('products', {
+                data
+            }))
+            .catch(err => console.log(err))
     }
 
     // [GET] /products/:slug
-    product(req, res) {
+    show(req, res) {
         res.send('Product Detail')
     }
 

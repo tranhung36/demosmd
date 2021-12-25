@@ -3,7 +3,7 @@ const routerSite = require('./site')
 
 function routes(app) {
 
-    // app.use('/products', routerProduct)
+    app.use('/products', routerProduct)
 
     app.use('/', routerSite)
 

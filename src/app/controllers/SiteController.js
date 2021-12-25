@@ -1,8 +1,9 @@
-const fetch = require('node-fetch')
 const {
     validationResult
 } = require('express-validator')
 const User = require('../models/User')
+const Product = require('../models/Product')
+const jwt = require('jsonwebtoken')
 
 class SiteController {
 
@@ -33,10 +34,14 @@ class SiteController {
             }
 
             if (user) {
-                res.cookie("username", user.username, {
-                    signed: true
+                const accessToken = jwt.sign({
+                    user
+                }, process.env.ACCESS_TOKEN_SECRET, {
+                    expiresIn: '30s'
                 })
-                res.redirect('/')
+
+                res.cookie('access_token', `Bearer ${accessToken}`)
+                    .redirect('/')
             }
             alerts.push('wrong email or password')
             res.render('login', {
@@ -51,22 +56,18 @@ class SiteController {
     }
 
     // [GET] /
-    async index(req, res) {
-        try {
-            const products = await fetch(process.env.API);
-            const data = await products.json()
-
-            res.render('index', {
-                data: data,
-            })
-        } catch (error) {
-            res.sendStatus(403)
-        }
+    index(req, res) {
+        Product.find({})
+            .sort('-price')
+            .then(data => res.render('index', {
+                data
+            }))
+            .catch(err => console.log(err))
     }
 
     // [GET] /logout
     logout(req, res) {
-        res.clearCookie("username")
+        res.clearCookie("access_token")
         res.redirect("/login")
     }
 

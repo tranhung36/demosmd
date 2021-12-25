@@ -8,7 +8,6 @@ const {
 
 const siteController = require('../app/controllers/SiteController')
 const authenticated = require('../app/middleware/Authentication')
-const isLogin = require('../app/middleware/isLogin')
 
 // site routes
 router.get('/login', (req, res) => {
@@ -16,7 +15,7 @@ router.get('/login', (req, res) => {
         layout: 'layouts/layout_login'
     })
 })
-router.post('/login', isLogin, body('password', 'password must be 5+ characters long').isLength({
+router.post('/login', body('password', 'password must be 5+ characters long').isLength({
     min: 5
 }), siteController.login)
 router.get('/logout', siteController.logout)
