@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
 const cookieParser = require('cookie-parser')
+const methodOverride = require('method-override')
 
 const routes = require('./routes')
 const db = require('./config/db/database')
@@ -18,6 +19,7 @@ db.connect()
 const port = process.env.PORT || 8080
 
 // middleware
+app.use(methodOverride('_method'))
 app.use(cookieParser('my secret'))
 app.use(express.urlencoded({
     extended: true,

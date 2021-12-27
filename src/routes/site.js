@@ -7,7 +7,7 @@ const {
 //TODO: research event emitter
 
 const siteController = require('../app/controllers/SiteController')
-const authenticated = require('../app/middleware/Authentication')
+const authorization = require('../app/middleware/Authorization')
 
 // site routes
 router.get('/login', (req, res) => {
@@ -15,11 +15,11 @@ router.get('/login', (req, res) => {
         layout: 'layouts/layout_login'
     })
 })
-router.post('/login/handle', body('password', 'password must be 5+ characters long').isLength({
+router.post('/login', body('password', 'password must be 5+ characters long').isLength({
     min: 5
 }), siteController.login)
 router.get('/logout', siteController.logout)
-router.get('/', authenticated, siteController.index)
+router.get('/', authorization, siteController.index)
 
 
 module.exports = router

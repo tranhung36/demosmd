@@ -31,17 +31,18 @@ class SiteController {
                     email: user.email,
                 }
 
-                const accessToken = signJWT(data, '15s')
+                const accessToken = signJWT(data, '1h')
 
                 res.cookie('access_token', `Bearer ${accessToken}`, {
-                        maxAge: 300000,
-                        httpOnly: true
+                        maxAge: 3600 * 1000,
+                        httpOnly: true,
+                        secure: true
                     })
                     .redirect('/')
             }
             res.render('login', {
-                errors: errors.array(),
-                layouts: 'layouts/layout_login'
+                layout: 'layouts/layout_login',
+                errors: errors.array()
             })
         } catch (error) {
             console.log(error)

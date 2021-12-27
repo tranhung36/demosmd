@@ -279,7 +279,7 @@ footer h6 {
     color: #d8d8d8;
 }
 
-#featured>div.row.mx-auto.container>nav>ul>li.page-item.active>a{
+#featured>nav>ul>li.page-item.active>a{
     background-color: #000;
     border-color: #000;
 }
