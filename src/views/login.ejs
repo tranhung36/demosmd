@@ -1,24 +1,24 @@
 <div class="main">
 
-    <form class="form" action="/login" method="post" id="login">
+    <form class="form" action="/login/handle" method="POST" id="login">
         <h3 class="heading">Login</h3>
 
         <div class="spacer"></div>
-        <% if(typeof errMsgs != 'undefined') { %>
-        <% errMsgs.forEach(err => { %>
+        <% if(typeof errors != 'undefined') { %>
+        <% errors.forEach(err => { %>
         <span class="form-message">
             <%= err.msg %>
         </span>
         <% }) %>
         <% } %>
 
-        <% if(typeof alerts != 'undefined') { %>
+        <!-- <% if(typeof alerts != 'undefined') { %>
         <% alerts.forEach(alert => { %>
         <span class="form-message">
             <%= alert %>
         </span>
         <% }) %>
-        <% } %>
+        <% } %> -->
 
         <div class="form-group">
             <label for="email" class="form-label">Email</label>

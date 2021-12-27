@@ -1,15 +1,15 @@
-const jwt = require('jsonwebtoken')
+const {
+    verifyJWT
+} = require('../../utils/jwt')
 
 module.exports = (req, res, next) => {
     const auth = req.headers.cookie
-    const token = auth.split('%20')[1]
-
-    if (!token) {
-        res.sendStatus(401)
+    if (auth) {
+        const token = auth.split('%20')[1]
+        if (verifyJWT(token)) {
+            return next()
+        }
     }
+    res.redirect('/login')
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
-        if (err) res.redirect('/login')
-        return next()
-    })
 }

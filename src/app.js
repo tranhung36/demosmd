@@ -10,38 +10,30 @@ const db = require('./config/db/database')
 const app = express()
 
 require('dotenv').config()
-app.use(cookieParser('my secret'))
-app.use(express.json())
 
 // connect db
 db.connect()
 
 // config port
-const port = 8080
+const port = process.env.PORT || 8080
 
 // middleware
+app.use(cookieParser('my secret'))
 app.use(express.urlencoded({
     extended: true,
 }))
-
-
-// configuration ejs template engine
 app.use(expressLayouts)
-// static files
 app.use(express.static(path.join(__dirname, 'public')))
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(morgan('combined'))
 
 // engine template
 app.set('view engine', 'ejs')
 app.set('layout', 'layouts/layout')
 app.set('views', path.join(__dirname, 'views'))
 
-app.use(morgan('combined'))
-
 // routes
 routes(app)
 
-
 app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`)
+    console.log(`Server listening at http://localhost:${port}`)
 })

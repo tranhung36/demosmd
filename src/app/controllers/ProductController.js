@@ -6,7 +6,7 @@ class ProductController {
     index(req, res) {
         Product.find({})
             .sort('-price')
-            .then(data => res.render('products', {
+            .then(data => res.render('products/index', {
                 data
             }))
             .catch(err => console.log(err))
@@ -15,6 +15,11 @@ class ProductController {
     // [GET] /products/:slug
     show(req, res) {
         res.send('Product Detail')
+    }
+
+    // [POST] /products/store
+    store(req, res) {
+        res.send('Product Store')
     }
 
 }

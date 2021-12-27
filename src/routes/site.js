@@ -15,7 +15,7 @@ router.get('/login', (req, res) => {
         layout: 'layouts/layout_login'
     })
 })
-router.post('/login', body('password', 'password must be 5+ characters long').isLength({
+router.post('/login/handle', body('password', 'password must be 5+ characters long').isLength({
     min: 5
 }), siteController.login)
 router.get('/logout', siteController.logout)

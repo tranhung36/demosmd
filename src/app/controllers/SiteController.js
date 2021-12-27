@@ -3,52 +3,46 @@ const {
 } = require('express-validator')
 const User = require('../models/User')
 const Product = require('../models/Product')
-const jwt = require('jsonwebtoken')
+const {
+    signJWT
+} = require('../../utils/jwt')
 
 class SiteController {
 
     // [POST] /login
-    async login(req, res, next) {
+    async login(req, res) {
         try {
             const {
                 email,
                 password
             } = req.body
 
-            const alerts = []
-
             const user = await User.findOne({
                 email,
                 password
             })
 
-            const errors = validationResult(req);
-
-            if (!errors.isEmpty()) {
-                const errMsgs = errors.array()
-
-                res.render('login', {
-                    layout: 'layouts/layout_login',
-                    errMsgs
-                })
-            }
+            const errors = validationResult(req)
 
             if (user) {
-                const accessToken = jwt.sign({
-                    user
-                }, process.env.ACCESS_TOKEN_SECRET, {
-                    expiresIn: '30s'
-                })
+                const data = {
+                    _id: user._id,
+                    username: user.username,
+                    email: user.email,
+                }
 
-                res.cookie('access_token', `Bearer ${accessToken}`)
+                const accessToken = signJWT(data, '15s')
+
+                res.cookie('access_token', `Bearer ${accessToken}`, {
+                        maxAge: 300000,
+                        httpOnly: true
+                    })
                     .redirect('/')
             }
-            alerts.push('wrong email or password')
             res.render('login', {
-                layout: 'layouts/layout_login',
-                alerts
+                errors: errors.array(),
+                layouts: 'layouts/layout_login'
             })
-
         } catch (error) {
             console.log(error)
         }
@@ -68,7 +62,7 @@ class SiteController {
     // [GET] /logout
     logout(req, res) {
         res.clearCookie("access_token")
-        res.redirect("/login")
+            .redirect("/login")
     }
 
 }
