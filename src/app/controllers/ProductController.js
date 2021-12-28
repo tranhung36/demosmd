@@ -81,10 +81,10 @@ class ProductController {
         }
     }
 
-    // [GET] /products/edit/:slug
+    // [GET] /products/edit/:_id
     async edit(req, res) {
         const product = await Product.findOne({
-            _id: req.params.slug
+            _id: req.params._id
         })
         res.render('products/edit', {
             product
@@ -100,12 +100,8 @@ class ProductController {
             image
         } = req.body
 
-        const product = await Product.findOne({
-            slug: req.params.slug
-        })
-
         Product.updateOne({
-                _id: product._id
+                _id: req.params._id
             }, {
                 title,
                 description,

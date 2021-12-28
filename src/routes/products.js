@@ -11,7 +11,7 @@ const authorization = require('../app/middleware/Authorization')
 router.get('/create', authorization, productController.create)
 router.post('/store', productController.store)
 // update product
-router.get('/edit/:slug', authorization, productController.edit)
+router.get('/edit/:_id', authorization, productController.edit)
 router.put('/:_id', productController.update)
 // show product
 router.get('/:slug', authorization, productController.show)
