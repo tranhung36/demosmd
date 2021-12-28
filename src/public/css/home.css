@@ -291,3 +291,8 @@ footer h6 {
 .page-link:hover {
     color:#1d1d1d;
 }
+
+#buy {
+    text-decoration: none;
+    color: #fff;
+}

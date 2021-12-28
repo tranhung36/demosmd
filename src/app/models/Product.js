@@ -21,13 +21,12 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     image: {
         type: String,
-        default: 'https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png'
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     createdAt: {
         type: Date,
